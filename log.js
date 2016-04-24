@@ -1,6 +1,6 @@
-var QuakeEmitter = require('./quake')
-var quakes = new QuakeEmitter()
+var EarthquakeEmitter = require('earthquake-emitter')
+var quakes = new EarthquakeEmitter()
 
-quakes.on('quake', data => {
-  console.log('Quake!', data.properties.mag, data.properties.place)
+quakes.on('earthquake', data => {
+  console.log('Earthquake!', data.properties.title)
 })

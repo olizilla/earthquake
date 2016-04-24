@@ -1,8 +1,8 @@
 var j5 = require('johnny-five')
 var async = require('async')
-var QuakeEmitter = require('./quake.js')
+var EarthquakeEmitter = require('earthquake-emitter')
 
-var pattern = ['red','yellow', 'orange', 'red', 'yellow', 'orange']
+var pattern = ['red','white','yellow','white', 'red']
 var freq = 200
 
 j5.Board().on('ready', function () {
@@ -18,7 +18,7 @@ j5.Board().on('ready', function () {
       })
     })
     this.wait(freq * pattern.length, () => led.off() )
-    this.wait((freq * pattern.length) + 1500, () => {
+    this.wait((freq * pattern.length) + (3000 * Math.random()), () => {
       done()
     } )
   }, 1)
@@ -27,6 +27,6 @@ j5.Board().on('ready', function () {
     l: led
   })
 
-  var quakes = new QuakeEmitter()
-  quakes.on('quake', data => queue.push(data))
+  var quakes = new EarthquakeEmitter()
+  quakes.on('earthquake', data => queue.push(data))
 })
